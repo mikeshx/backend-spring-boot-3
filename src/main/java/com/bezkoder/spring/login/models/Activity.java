@@ -12,8 +12,10 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     // ID attività
-    private Integer id;
+    private Long id;
 
+    // Più attività associate a un singolo utente
+    //
     @ManyToOne
     @JoinColumn(name = "id_organizzatore")
     private User organizzatore;
@@ -23,6 +25,9 @@ public class Activity {
 
     @Column(name = "data_fine")
     private Date dataFine;
+
+    @Column(name = "tipo")
+    private String tipo;
 
     // Nome attività
     @Column(name = "nome")
@@ -41,6 +46,17 @@ public class Activity {
     @Column(name = "longitudine")
     private String longitudine;
 
+    public Activity (String nome, String descrizione, Date dataInizio, Date dataFine) {
+        this.nome = nome;
+        this.descrizione = descrizione;
+        this.dataInizio = dataInizio;
+        this.dataFine = dataFine;
+    }
+
+    public Activity() {
+
+    }
+
     public String getName() {
         return nome;
     }
@@ -49,11 +65,11 @@ public class Activity {
         this.nome = name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
