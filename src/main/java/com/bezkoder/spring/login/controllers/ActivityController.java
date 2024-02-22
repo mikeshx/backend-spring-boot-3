@@ -38,9 +38,7 @@ public class ActivityController {
             // Crea un oggetto attività da activityRequest
             Activity activity = new Activity(
                     activityRequest.getNome(),
-                    activityRequest.getDescrizione(),
-                    activityRequest.getDataInizio(),
-                    activityRequest.getDataFine()
+                    activityRequest.getDescrizione()
             );
 
             // Andiamo a salvare il nostro oggetto nel DB

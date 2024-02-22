@@ -46,11 +46,9 @@ public class Activity {
     @Column(name = "longitudine")
     private String longitudine;
 
-    public Activity (String nome, String descrizione, Date dataInizio, Date dataFine) {
+    public Activity (String nome, String descrizione) {
         this.nome = nome;
         this.descrizione = descrizione;
-        this.dataInizio = dataInizio;
-        this.dataFine = dataFine;
     }
 
     public Activity() {

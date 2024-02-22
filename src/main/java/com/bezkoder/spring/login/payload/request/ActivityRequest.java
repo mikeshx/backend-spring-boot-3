@@ -13,12 +13,6 @@ public class ActivityRequest {
     @NotBlank
     private String descrizione;
 
-    @NotBlank
-    private Date dataFine;
-
-    @NotBlank
-    private Date dataInizio;
-
     public String getNome() {
         return nome;
     }
@@ -35,19 +29,4 @@ public class ActivityRequest {
         this.descrizione = descrizione;
     }
 
-    public Date getDataInizio() {
-        return dataInizio;
-    }
-
-    public void setDataInizio(Date dataInizio) {
-        this.dataInizio = dataInizio;
-    }
-
-    public Date getDataFine() {
-        return dataFine;
-    }
-
-    public void setDataFine(Date dataFine) {
-        this.dataFine = dataFine;
-    }
 }
