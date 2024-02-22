@@ -2,6 +2,7 @@ package com.bezkoder.spring.login.models;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 // This tells Hibernate to make a table out of this class
@@ -21,10 +22,10 @@ public class Activity {
     private User organizzatore;
 
     @Column(name = "data_inizio")
-    private Date dataInizio;
+    private LocalDateTime dataInizio;
 
     @Column(name = "data_fine")
-    private Date dataFine;
+    private LocalDateTime dataFine;
 
     @Column(name = "tipo")
     private String tipo;
@@ -46,9 +47,11 @@ public class Activity {
     @Column(name = "longitudine")
     private String longitudine;
 
-    public Activity (String nome, String descrizione) {
+    public Activity (String nome, String descrizione, LocalDateTime dataInizio, LocalDateTime dataFine) {
         this.nome = nome;
         this.descrizione = descrizione;
+        this.dataInizio = dataInizio;
+        this.dataFine = dataFine;
     }
 
     public Activity() {
@@ -79,19 +82,19 @@ public class Activity {
         this.organizzatore = organizzatore;
     }
 
-    public Date getDataInizio() {
+    public LocalDateTime getDataInizio() {
         return dataInizio;
     }
 
-    public void setDataInizio(Date dataInizio) {
+    public void setDataInizio(LocalDateTime dataInizio) {
         this.dataInizio = dataInizio;
     }
 
-    public Date getDataFine() {
+    public LocalDateTime getDataFine() {
         return dataFine;
     }
 
-    public void setDataFine(Date dataFine) {
+    public void setDataFine(LocalDateTime dataFine) {
         this.dataFine = dataFine;
     }
 

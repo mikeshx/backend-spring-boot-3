@@ -1,5 +1,6 @@
 package com.bezkoder.spring.login.payload.request;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -12,6 +13,12 @@ public class ActivityRequest {
 
     @NotBlank
     private String descrizione;
+
+    @NotBlank
+    private String dataInizio;
+
+    @NotBlank
+    private String dataFine;
 
     public String getNome() {
         return nome;
@@ -29,4 +36,19 @@ public class ActivityRequest {
         this.descrizione = descrizione;
     }
 
+    public String getDataInizio() {
+        return dataInizio;
+    }
+
+    public void setDataInizio(String dataInizio) {
+        this.dataInizio = dataInizio;
+    }
+
+    public String getDataFine() {
+        return dataFine;
+    }
+
+    public void setDataFine(String dataFine) {
+        this.dataFine = dataFine;
+    }
 }

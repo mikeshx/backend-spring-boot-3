@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,11 +37,28 @@ public class ActivityController {
     @PostMapping("/create")
         public ResponseEntity<?> createActivity(@Valid @RequestBody ActivityRequest activityRequest) {
 
+        // Parsiamo la stringa JSON che ci arriva dall'acqtivityRequest in LocalDateTime
+        // settiamo il parser delle date per interpretare correttamente il formato ISO 8601
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+        LocalDateTime dataInizio = null;
+        LocalDateTime dataFine = null;
+
+        try {
+            dataInizio = LocalDateTime.parse(activityRequest.getDataInizio(), formatter);
+            dataFine = LocalDateTime.parse(activityRequest.getDataFine(), formatter);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error while parsing the data string"));
+        }
+
             // Crea un oggetto attività da activityRequest
             Activity activity = new Activity(
                     activityRequest.getNome(),
-                    activityRequest.getDescrizione()
+                    activityRequest.getDescrizione(),
+                    dataInizio,
+                    dataFine
             );
+
+            System.out.println("date:" +dataInizio);
 
             // Andiamo a salvare il nostro oggetto nel DB
             try {
@@ -48,7 +67,7 @@ public class ActivityController {
                 return ResponseEntity.badRequest().body(new MessageResponse("Error storing data in the database"));
             }
 
-            //TODO: qua non uso ancora ActivityResponse, dato che sto salvango un oggetto nel DB e non mi serve restituire un dato, ma un messaggio
+            //TODO: qua non uso ancora ActivityResponse, dato che sto salvando un oggetto nel DB e non mi serve restituire un dato, ma un messaggio
             return ResponseEntity.ok(new MessageResponse("Activity added successfully"));
 
         }
