@@ -16,19 +16,9 @@ public class Activity {
     private Long id;
 
     // Più attività associate a un singolo utente
-    //
     @ManyToOne
     @JoinColumn(name = "id_organizzatore")
     private User organizzatore;
-
-    @Column(name = "data_inizio")
-    private LocalDateTime dataInizio;
-
-    @Column(name = "data_fine")
-    private LocalDateTime dataFine;
-
-    @Column(name = "tipo")
-    private String tipo;
 
     // Nome attività
     @Column(name = "nome")
@@ -37,9 +27,11 @@ public class Activity {
     @Column(name = "descrizione")
     private String descrizione;
 
-    //TODO: per l'immagine di copertina, per il momento assumo che si usi un link esterno ad un altra risorsa
-    @Column(name = "img_copertina")
-    private String imgCopertina;
+    @Column(name = "data_inizio")
+    private LocalDateTime dataInizio;
+
+    @Column(name = "data_fine")
+    private LocalDateTime dataFine;
 
     @Column(name = "latitudine")
     private String latitudine;
@@ -47,11 +39,28 @@ public class Activity {
     @Column(name = "longitudine")
     private String longitudine;
 
-    public Activity (String nome, String descrizione, LocalDateTime dataInizio, LocalDateTime dataFine) {
+    @Column(name = "tipo")
+    private Integer tipo;
+
+    @Column(name = "max_partecipanti")
+    private Integer max_partecipanti;
+
+    //TODO: per l'immagine di copertina, per il momento assumo che si usi un link esterno ad un altra risorsa
+    @Column(name = "img_copertina")
+    private String imgCopertina;
+
+    public Activity (String nome, String descrizione,
+                     LocalDateTime dataInizio, LocalDateTime dataFine,
+                     String latitudine, String longitudine,
+                     Integer tipo, Integer max_partecipanti) {
         this.nome = nome;
         this.descrizione = descrizione;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
+        this.latitudine = latitudine;
+        this.longitudine = longitudine;
+        this.tipo = tipo;
+        this.max_partecipanti = max_partecipanti;
     }
 
     public Activity() {
@@ -128,5 +137,21 @@ public class Activity {
 
     public void setLongitudine(String longitudine) {
         this.longitudine = longitudine;
+    }
+
+    public Integer getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Integer tipo) {
+        this.tipo = tipo;
+    }
+
+    public Integer getMax_partecipanti() {
+        return max_partecipanti;
+    }
+
+    public void setMax_partecipanti(Integer max_partecipanti) {
+        this.max_partecipanti = max_partecipanti;
     }
 }

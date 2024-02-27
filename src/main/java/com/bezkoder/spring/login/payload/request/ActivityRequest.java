@@ -20,6 +20,20 @@ public class ActivityRequest {
     @NotBlank
     private String dataFine;
 
+    @NotBlank
+    private String latitudine;
+
+    @NotBlank
+    private String longitudine;
+
+    @NotNull
+    @Min(1)
+    private Integer tipo;
+
+    @NotNull
+    @Min(1)
+    private Integer max_partecipanti;
+
     public String getNome() {
         return nome;
     }
@@ -50,5 +64,33 @@ public class ActivityRequest {
 
     public void setDataFine(String dataFine) {
         this.dataFine = dataFine;
+    }
+
+    public String getLatitudine() {
+        return latitudine;
+    }
+
+    public void setLatitudine(String latitudine) {
+        this.latitudine = latitudine;
+    }
+
+    public String getLongitudine() {
+        return longitudine;
+    }
+
+    public void setLongitudine(String longitudine) {
+        this.longitudine = longitudine;
+    }
+
+    public Integer getMax_partecipanti() {
+        return max_partecipanti;
+    }
+
+    public Integer getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Integer tipo) {
+        this.tipo = tipo;
     }
 }

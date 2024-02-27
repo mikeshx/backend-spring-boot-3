@@ -13,6 +13,9 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -34,8 +37,20 @@ public class ActivityController {
     private ActivityRepository activityRepository;
 
     /** API endpoint per la creaizone di una attività */
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/create")
-        public ResponseEntity<?> createActivity(@Valid @RequestBody ActivityRequest activityRequest) {
+        public ResponseEntity<?> createActivity(@Valid @RequestBody ActivityRequest activityRequest, BindingResult bindingResult) {
+
+        // BindingResult è un oggetto fornito da Spring Framework che rappresenta il risultato
+        // della validazione dei dati. Viene utilizzato per raccogliere eventuali errori di validazione
+        // restituisce errori 400 bad request in caso di richiesta non valida
+        if (bindingResult.hasErrors()) {
+            StringBuilder errorMessage = new StringBuilder();
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                errorMessage.append(fieldError.getDefaultMessage()).append(". ");
+            }
+            return ResponseEntity.badRequest().body(new MessageResponse(errorMessage.toString()));
+        }
 
         // Parsiamo la stringa JSON che ci arriva dall'acqtivityRequest in LocalDateTime
         // settiamo il parser delle date per interpretare correttamente il formato ISO 8601
@@ -55,7 +70,11 @@ public class ActivityController {
                     activityRequest.getNome(),
                     activityRequest.getDescrizione(),
                     dataInizio,
-                    dataFine
+                    dataFine,
+                    activityRequest.getLatitudine(),
+                    activityRequest.getLongitudine(),
+                    activityRequest.getTipo(),
+                    activityRequest.getMax_partecipanti()
             );
 
             System.out.println("date:" +dataInizio);
