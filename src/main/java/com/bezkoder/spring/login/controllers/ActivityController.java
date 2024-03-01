@@ -8,6 +8,7 @@ import com.bezkoder.spring.login.payload.request.ActivityRequest;
 import com.bezkoder.spring.login.payload.request.SignupRequest;
 import com.bezkoder.spring.login.payload.response.MessageResponse;
 import com.bezkoder.spring.login.repository.ActivityRepository;
+import com.bezkoder.spring.login.repository.UserRepository;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,10 @@ public class ActivityController {
     @Autowired
     private ActivityRepository activityRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     /** API endpoint per la creaizone di una attività */
-    @PreAuthorize("hasRole('USER')")
     @PostMapping("/create")
         public ResponseEntity<?> createActivity(@Valid @RequestBody ActivityRequest activityRequest, BindingResult bindingResult) {
 
@@ -65,8 +68,14 @@ public class ActivityController {
             return ResponseEntity.badRequest().body(new MessageResponse("Error while parsing the data string"));
         }
 
+        User organizzatore = userRepository.findById(activityRequest.getId_organizzatore())
+
+                .orElseThrow(() -> new RuntimeException("Organizzatore non trovato"));
+        System.out.println("id_organizzatore:" +activityRequest.getId_organizzatore());
+
             // Crea un oggetto attività da activityRequest
             Activity activity = new Activity(
+                    organizzatore,
                     activityRequest.getNome(),
                     activityRequest.getDescrizione(),
                     dataInizio,

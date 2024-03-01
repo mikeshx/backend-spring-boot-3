@@ -34,6 +34,10 @@ public class ActivityRequest {
     @Min(1)
     private Integer max_partecipanti;
 
+    @NotNull
+    @Min(1)
+    private Integer id_organizzatore;
+
     public String getNome() {
         return nome;
     }
@@ -92,5 +96,13 @@ public class ActivityRequest {
 
     public void setTipo(Integer tipo) {
         this.tipo = tipo;
+    }
+
+    public Integer getId_organizzatore() {
+        return id_organizzatore;
+    }
+
+    public void setId_organizzatore(Integer id_organizzatore) {
+        this.id_organizzatore = id_organizzatore;
     }
 }

@@ -49,10 +49,11 @@ public class Activity {
     @Column(name = "img_copertina")
     private String imgCopertina;
 
-    public Activity (String nome, String descrizione,
+    public Activity (User organizzatore, String nome, String descrizione,
                      LocalDateTime dataInizio, LocalDateTime dataFine,
                      String latitudine, String longitudine,
                      Integer tipo, Integer max_partecipanti) {
+        this.organizzatore = organizzatore;
         this.nome = nome;
         this.descrizione = descrizione;
         this.dataInizio = dataInizio;
