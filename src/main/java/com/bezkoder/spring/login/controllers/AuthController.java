@@ -36,7 +36,7 @@ import com.bezkoder.spring.login.security.services.UserDetailsImpl;
 
 //for Angular Client (withCredentials)
 //@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600, allowCredentials="true")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080", "http://localhost:8081", "http://localhost:8100"}, allowCredentials = "true", allowedHeaders = "*")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080", "http://localhost:8081", "http://localhost:8100", "http://10.0.2.16", "http://10.0.2.16:8000/", "http://10.0.2.2:8000/", "http://localhost", "http://localhost/*", "http://localhost/register"}, allowCredentials = "true", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {

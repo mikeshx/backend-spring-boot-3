@@ -34,10 +34,10 @@ public class Activity {
     private LocalDateTime dataFine;
 
     @Column(name = "latitudine")
-    private String latitudine;
+    private Double latitudine;
 
     @Column(name = "longitudine")
-    private String longitudine;
+    private Double longitudine;
 
     @Column(name = "tipo")
     private Integer tipo;
@@ -51,7 +51,7 @@ public class Activity {
 
     public Activity (User organizzatore, String nome, String descrizione,
                      LocalDateTime dataInizio, LocalDateTime dataFine,
-                     String latitudine, String longitudine,
+                     Double latitudine, Double longitudine,
                      Integer tipo, Integer max_partecipanti) {
         this.organizzatore = organizzatore;
         this.nome = nome;
@@ -124,19 +124,19 @@ public class Activity {
         this.imgCopertina = imgCopertina;
     }
 
-    public String getLatitudine() {
+    public Double getLatitudine() {
         return latitudine;
     }
 
-    public void setLatitudine(String latitudine) {
+    public void setLatitudine(Double latitudine) {
         this.latitudine = latitudine;
     }
 
-    public String getLongitudine() {
+    public Double getLongitudine() {
         return longitudine;
     }
 
-    public void setLongitudine(String longitudine) {
+    public void setLongitudine(Double longitudine) {
         this.longitudine = longitudine;
     }
 

@@ -20,11 +20,11 @@ public class ActivityRequest {
     @NotBlank
     private String dataFine;
 
-    @NotBlank
-    private String latitudine;
+    @NotNull
+    private Double latitudine;
 
-    @NotBlank
-    private String longitudine;
+    @NotNull
+    private Double longitudine;
 
     @NotNull
     @Min(1)
@@ -71,19 +71,19 @@ public class ActivityRequest {
         this.dataFine = dataFine;
     }
 
-    public String getLatitudine() {
+    public Double getLatitudine() {
         return latitudine;
     }
 
-    public void setLatitudine(String latitudine) {
+    public void setLatitudine(Double latitudine) {
         this.latitudine = latitudine;
     }
 
-    public String getLongitudine() {
+    public Double getLongitudine() {
         return longitudine;
     }
 
-    public void setLongitudine(String longitudine) {
+    public void setLongitudine(Double longitudine) {
         this.longitudine = longitudine;
     }
 

@@ -103,13 +103,14 @@ public class ActivityController {
         }
 
     @PostMapping("/getActivitiesByBounds")
-    public ResponseEntity<?> getActivitiesByBounds(@Valid @RequestBody Map<String, String> coordinates, BindingResult bindingResult) {
-        String northEastLat = coordinates.get("northEastLat");
-        String northEastLng = coordinates.get("northEastLng");
-        String southWestLat = coordinates.get("southWestLat");
-        String southWestLng = coordinates.get("southWestLng");
+    public ResponseEntity<?> getActivitiesByBounds(@Valid @RequestBody Map<String, Double> coordinates, BindingResult bindingResult) {
+        Double northEastLat = coordinates.get("northEastLat");
+        Double northEastLng = coordinates.get("northEastLng");
+        Double southWestLat = coordinates.get("southWestLat");
+        Double southWestLng = coordinates.get("southWestLng");
 
-        List<Activity> activities = activityRepository.findByLatitudineBetweenAndLongitudineBetween(northEastLat, northEastLng, southWestLat, southWestLng);
+        List<Activity> activities = activityRepository.findByLatitudineBetweenAndLongitudineBetween(southWestLat, northEastLat, southWestLng, northEastLng);
+        System.out.println("Numero di attività trovate: " + activities.size());
 
         // Ora puoi fare ciò che vuoi con le coordinate ricevute
         return ResponseEntity.ok(activities);
