@@ -16,4 +16,7 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
     // Restituisce tutte le attività organizzate da un utente
     // SELECT * FROM Activity WHERE id_organizzatore = 1;
     List<Activity> findByOrganizzatoreId(Long organizzatoreId);
+
+    List<Activity> findByLatitudineBetweenAndLongitudineBetween(String minLat, String maxLat, String minLng, String maxLng);
+
 }

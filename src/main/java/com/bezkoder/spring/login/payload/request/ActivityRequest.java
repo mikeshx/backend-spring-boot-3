@@ -34,7 +34,8 @@ public class ActivityRequest {
     @Min(1)
     private Integer max_partecipanti;
 
-    @NotNull
+    //TODO: quando invio la richiesta da utente non loggato, ho problemi a causa di id_organizzatore,
+    // ricordati di loggarti, e rimettici not null...
     @Min(1)
     private Integer id_organizzatore;
 

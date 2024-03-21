@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 //for Angular Client (withCredentials)
@@ -99,4 +101,17 @@ public class ActivityController {
             return ResponseEntity.ok(new MessageResponse("Activity added successfully"));
 
         }
+
+    @PostMapping("/getActivitiesByBounds")
+    public ResponseEntity<?> getActivitiesByBounds(@Valid @RequestBody Map<String, String> coordinates, BindingResult bindingResult) {
+        String northEastLat = coordinates.get("northEastLat");
+        String northEastLng = coordinates.get("northEastLng");
+        String southWestLat = coordinates.get("southWestLat");
+        String southWestLng = coordinates.get("southWestLng");
+
+        List<Activity> activities = activityRepository.findByLatitudineBetweenAndLongitudineBetween(northEastLat, northEastLng, southWestLat, southWestLng);
+
+        // Ora puoi fare ciò che vuoi con le coordinate ricevute
+        return ResponseEntity.ok(activities);
+    }
 }
