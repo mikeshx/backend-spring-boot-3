@@ -6,10 +6,11 @@ import java.util.Date;
 
 public class ActivityResponse {
 
+    private String nome;
     private Long id;
 
     private Long idOrganizzatore;
-    private String nome;
+    private String nome_tipo_evento;
     private String descrizione;
 
     private LocalDateTime dataInizio;
@@ -24,13 +25,14 @@ public class ActivityResponse {
 
     private Integer max_partecipanti;
 
-    public ActivityResponse(Long id, Long idOrganizzatore, String nome, String descrizione,
+    public ActivityResponse(String nome, Long id, Long idOrganizzatore, String nome_tipo_evento, String descrizione,
                             LocalDateTime dataInizio, LocalDateTime dataFine,
                             String latitudine, String longitudine,
                             Integer tipo, Integer max_partecipanti) {
+        this.nome = nome;
         this.id = id;
         this.idOrganizzatore = idOrganizzatore;
-        this.nome = nome;
+        this.nome_tipo_evento = nome_tipo_evento;
         this.descrizione = descrizione;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
@@ -40,12 +42,12 @@ public class ActivityResponse {
         this.max_partecipanti = max_partecipanti;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNome_tipo_evento() {
+        return nome_tipo_evento;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome_tipo_evento(String nome) {
+        this.nome_tipo_evento = nome;
     }
 
     public String getDescrizione() {
@@ -118,5 +120,13 @@ public class ActivityResponse {
 
     public void setMax_partecipanti(Integer max_partecipanti) {
         this.max_partecipanti = max_partecipanti;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

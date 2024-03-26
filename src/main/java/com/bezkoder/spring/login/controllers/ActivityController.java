@@ -13,6 +13,7 @@ import com.bezkoder.spring.login.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
@@ -43,6 +44,8 @@ public class ActivityController {
     private UserRepository userRepository;
 
     /** API endpoint per la creaizone di una attività */
+
+    //TODO: proteggi richiesta POST con auth
     @PostMapping("/create")
         public ResponseEntity<?> createActivity(@Valid @RequestBody ActivityRequest activityRequest, BindingResult bindingResult) {
 
@@ -74,17 +77,18 @@ public class ActivityController {
 
                 .orElseThrow(() -> new RuntimeException("Organizzatore non trovato"));
         System.out.println("id_organizzatore:" +activityRequest.getId_organizzatore());
+        System.out.println("nome tipo evento:" +activityRequest.getNome_tipo_evento());
 
             // Crea un oggetto attività da activityRequest
             Activity activity = new Activity(
-                    organizzatore,
                     activityRequest.getNome(),
+                    organizzatore,
+                    activityRequest.getNome_tipo_evento(),
                     activityRequest.getDescrizione(),
                     dataInizio,
                     dataFine,
                     activityRequest.getLatitudine(),
                     activityRequest.getLongitudine(),
-                    activityRequest.getTipo(),
                     activityRequest.getMax_partecipanti()
             );
 
@@ -102,6 +106,7 @@ public class ActivityController {
 
         }
 
+    //TODO: proteggi richiesta POST con auth
     @PostMapping("/getActivitiesByBounds")
     public ResponseEntity<?> getActivitiesByBounds(@Valid @RequestBody Map<String, Double> coordinates, BindingResult bindingResult) {
         Double northEastLat = coordinates.get("northEastLat");

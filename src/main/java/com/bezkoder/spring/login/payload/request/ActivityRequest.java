@@ -7,9 +7,12 @@ import java.util.Set;
 import jakarta.validation.constraints.*;
 
 public class ActivityRequest {
+
     @NotBlank
-    @Size(min = 3, max = 40)
     private String nome;
+
+    @NotBlank
+    private String nome_tipo_evento;
 
     @NotBlank
     private String descrizione;
@@ -28,24 +31,12 @@ public class ActivityRequest {
 
     @NotNull
     @Min(1)
-    private Integer tipo;
-
-    @NotNull
-    @Min(1)
     private Integer max_partecipanti;
 
     //TODO: quando invio la richiesta da utente non loggato, ho problemi a causa di id_organizzatore,
     // ricordati di loggarti, e rimettici not null...
     @Min(1)
     private Integer id_organizzatore;
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getDescrizione() {
         return descrizione;
@@ -91,19 +82,27 @@ public class ActivityRequest {
         return max_partecipanti;
     }
 
-    public Integer getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Integer tipo) {
-        this.tipo = tipo;
-    }
-
     public Integer getId_organizzatore() {
         return id_organizzatore;
     }
 
     public void setId_organizzatore(Integer id_organizzatore) {
         this.id_organizzatore = id_organizzatore;
+    }
+
+    public String getNome_tipo_evento() {
+        return nome_tipo_evento;
+    }
+
+    public void setNome_tipo_evento(String nome_tipo_evento) {
+        this.nome_tipo_evento = nome_tipo_evento;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

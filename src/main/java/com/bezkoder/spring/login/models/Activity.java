@@ -24,6 +24,10 @@ public class Activity {
     @Column(name = "nome")
     private String nome;
 
+    // Nome tipo evento
+    @Column(name = "nome_tipo_evento")
+    private String nome_tipo_evento;
+
     @Column(name = "descrizione")
     private String descrizione;
 
@@ -39,9 +43,6 @@ public class Activity {
     @Column(name = "longitudine")
     private Double longitudine;
 
-    @Column(name = "tipo")
-    private Integer tipo;
-
     @Column(name = "max_partecipanti")
     private Integer max_partecipanti;
 
@@ -49,18 +50,17 @@ public class Activity {
     @Column(name = "img_copertina")
     private String imgCopertina;
 
-    public Activity (User organizzatore, String nome, String descrizione,
+    public Activity (String nome, User organizzatore, String nome_tipo_evento, String descrizione,
                      LocalDateTime dataInizio, LocalDateTime dataFine,
-                     Double latitudine, Double longitudine,
-                     Integer tipo, Integer max_partecipanti) {
-        this.organizzatore = organizzatore;
+                     Double latitudine, Double longitudine, Integer max_partecipanti) {
         this.nome = nome;
+        this.organizzatore = organizzatore;
+        this.nome_tipo_evento = nome_tipo_evento;
         this.descrizione = descrizione;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
         this.latitudine = latitudine;
         this.longitudine = longitudine;
-        this.tipo = tipo;
         this.max_partecipanti = max_partecipanti;
     }
 
@@ -68,12 +68,12 @@ public class Activity {
 
     }
 
-    public String getName() {
-        return nome;
+    public String getNome_tipo_evento() {
+        return nome_tipo_evento;
     }
 
-    public void setName(String name) {
-        this.nome = name;
+    public void setNome_tipo_evento(String name) {
+        this.nome_tipo_evento = name;
     }
 
     public Long getId() {
@@ -140,19 +140,19 @@ public class Activity {
         this.longitudine = longitudine;
     }
 
-    public Integer getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Integer tipo) {
-        this.tipo = tipo;
-    }
-
     public Integer getMax_partecipanti() {
         return max_partecipanti;
     }
 
     public void setMax_partecipanti(Integer max_partecipanti) {
         this.max_partecipanti = max_partecipanti;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }
